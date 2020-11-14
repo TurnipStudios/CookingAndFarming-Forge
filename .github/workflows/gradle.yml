@@ -5,7 +5,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - dev/*
+      - ver/*
   pull_request:
     branches: [ master ]
 
@@ -23,11 +25,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew clean build
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Cooking and Farming
+        name: CookingAndFarming-Forge
         path: build/libs/*
     - name: Cache
       uses: actions/cache@v2

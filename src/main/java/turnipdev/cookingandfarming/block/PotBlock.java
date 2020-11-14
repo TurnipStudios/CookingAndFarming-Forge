@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 public class PotBlock extends Block {
     private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
+    // The messy VoxelShapes for different directions
     private static final VoxelShape SHAPE_NORTH = Stream.of(
             Block.makeCuboidShape(2, 0, 3, 3, 6, 13),
             Block.makeCuboidShape(3, 0, 13, 13, 6, 14),
@@ -81,6 +82,8 @@ public class PotBlock extends Block {
         super(properties);
     }
 
+    // Rotate the VoxelShape depending on the direction the block is facing
+    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         switch (state.get(FACING)) {
@@ -96,17 +99,20 @@ public class PotBlock extends Block {
         }
     }
 
+    // Rotate the block depending on the player's direction
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.toRotation(state.get(FACING)));
@@ -115,10 +121,5 @@ public class PotBlock extends Block {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-    }
-
-    @Override
-    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return 0.5f;
     }
 }

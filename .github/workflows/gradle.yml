@@ -5,11 +5,11 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: 
+    branches:
       - dev/*
       - ver/*
   pull_request:
-    branches: 
+    branches:
       - dev/*
       - ver/*
 

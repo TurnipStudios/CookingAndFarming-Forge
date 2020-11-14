@@ -9,7 +9,9 @@ on:
       - dev/*
       - ver/*
   pull_request:
-    branches: [ master ]
+    branches: 
+      - dev/*
+      - ver/*
 
 jobs:
   build:

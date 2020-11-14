@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cookingandfarming:block/pot"
+    },
+    "facing=south": {
+      "model": "cookingandfarming:block/pot",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cookingandfarming:block/pot",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cookingandfarming:block/pot",
+      "y": 90
+    }
+  }
+}
